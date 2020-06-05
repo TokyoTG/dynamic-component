@@ -1,10 +1,13 @@
 <template>
-    <div :class="[expanded ? 'expanded' : 'closed']">
-        <slot></slot>
-    <button id="ex-btn" @click="expandComponent">Expand</button>
-    <button id="cl-btn" @click="closeComponent">Close</button>
+    <div id="dynamic"
+    :class="[expanded ? 'expanded' : 'closed', size == 'small' ? 'small' : '',size == 'medium' ? 'medium' : '',size == 'large' ? 'large' : '' ]"
+    >
+    <slot></slot>
+    <span id="ex-btn" @click="expandComponent">+</span>
+    <span id="cl-btn" @click="closeComponent">-</span>
     </div>
 </template>
+
 <script>
 export default {
     name:"dynamicComponent",
@@ -21,14 +24,14 @@ export default {
       },
       size:{
         type:String,
-          default: "400px"
+          default: "small"
       }
   },
   methods: {
     expandComponent(){
         let exbtn = document.getElementById("ex-btn")
         let clbtn = document.getElementById("cl-btn");
-                this.expanded = true;
+              this.expanded = true;
                 exbtn.style.display = "none";
                 clbtn.style.display = "unset";
     },
@@ -45,8 +48,35 @@ export default {
 </script>
 
 <style lang="css" scoped>
-    #cl-btn{
+  #cl-btn{
     display: none;
+}
+#cl-btn,#ex-btn{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.1em;
+  border-radius: 10px;
+  background: #212121;
+  color: white;
+  cursor: pointer;
+}
+#dynamic.expanded{
+  min-width: 100%;
+  min-height: 100vh;
+}
+
+#dynamic.small{
+    min-width: 20%;
+  min-height: 40vh;
+}
+
+#dynamic{
+    background: #212121;
+    position: relative;
 }
 
 </style>

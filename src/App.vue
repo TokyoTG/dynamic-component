@@ -1,27 +1,35 @@
 <template>
   <div id="app">
-    <dynamic-component/>
+    <dynamic-component 
+    
+    >
+    </dynamic-component>
   </div>
 </template>
 
 <script>
-import dynamicComponent from './components/dynamic-component.vue'
-
+import dynamicComponent from './components/dynamic-component.vue';
 export default {
   name: 'App',
   components: {
     dynamicComponent
+  },
+  data(){
+    return{
+      // size:'large'
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+*{
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+    color: white;
 }
+
 </style>
