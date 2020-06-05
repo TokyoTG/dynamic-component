@@ -1,6 +1,6 @@
 <template>
     <div id="dynamic"
-    :class="[expanded ? 'expanded' : 'closed', size == 'small' ? 'small' : '',size == 'medium' ? 'medium' : '',size == 'large' ? 'large' : '' ]"
+    :class="[expanded ? 'expanded' : 'closed', size  == 'small' && !expanded ? 'small' : '',size  == 'medium' && !expanded ? 'medium' : '',size  == 'large' && !expanded ? 'large' : '' ]"
     >
     <slot></slot>
     <span id="ex-btn" @click="expandComponent">+</span>
@@ -70,12 +70,20 @@ export default {
 }
 
 #dynamic.small{
-    min-width: 20%;
+    min-width: 40%;
   min-height: 40vh;
 }
-
+#dynamic.medium{
+    min-width: 60%;
+  min-height: 40vh;
+}
+#dynamic.large{
+    min-width: 40%;
+  min-height: 50vh;
+}
 #dynamic{
     background: #212121;
+    transition: .3s;
     position: relative;
 }
 
