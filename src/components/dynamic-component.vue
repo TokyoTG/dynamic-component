@@ -58,12 +58,12 @@ export default {
 #cl-btn.hide {
   display: none;
 }
-#cl-btn,
-#ex-btn {
+#cl-btn.show,
+#ex-btn.show{
   position: absolute;
   top: 5px;
   right: 5px;
-
+  display: none;
   padding: 10px;
   text-align: center;
   font-size: 1.1em;
@@ -81,10 +81,13 @@ export default {
 #cl-btn {
   display: none;
 }
+#dynamic:hover #cl-btn.show, #dynamic:hover #ex-btn.show{
+  display: inline-block;
+}
 #dynamic.expanded {
   width: 100%;
   z-index: 1000;
-  height: 100vh;
+  height: 100vmax;
 }
 
 #dynamic.small {
@@ -107,6 +110,7 @@ export default {
   #dynamic.small,
   #dynamic.medium {
     min-width: 100%;
+    margin-bottom: 15px;
   }
 }
 </style>

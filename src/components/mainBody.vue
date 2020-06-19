@@ -40,11 +40,13 @@ export default {
 #main-body {
   /* width: 98%; */
   display: flex;
-  background: #212121;
+  /* background: #212121; */
   justify-content: space-evenly;
   padding: 5px 0;
-  min-height: 100vh;
-  margin-bottom: 20px;
+  min-height: 90vh;
+  max-height: 90vh;
+  overflow: hidden;
+  /* margin-bottom: 20px; */
   flex-wrap: wrap;
 }
 .expanded {
@@ -55,7 +57,6 @@ export default {
 .side1,
 .side2,
 .main {
-  border-radius: 10px;
   padding: 10px 15px;
 }
 </style>
