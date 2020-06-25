@@ -1,18 +1,18 @@
 <template>
   <div id="main-body">
-    <dynamicComponent size="small" class="side1">
+    <dynamicComponent size="small" class="body-item side1">
       <h1>Side1</h1>
       <template v-slot:content>
         <side1 />
       </template>
     </dynamicComponent>
-    <dynamicComponent size="medium" class="main">
+    <dynamicComponent size="medium" class="body-item main">
       <h1>Main</h1>
       <template v-slot:content>
         <myBody />
       </template>
     </dynamicComponent>
-    <dynamicComponent size="small" class="side2">
+    <dynamicComponent size="small" class="body-item side2">
       <h1>Side2</h1>
       <template v-slot:content>
         <side2 />
@@ -43,8 +43,9 @@ export default {
   background: #212121;
   justify-content: space-evenly;
   padding: 5px 0;
-  min-height: 100vh;
-  margin-bottom: 20px;
+  max-height: 90vh;
+  overflow: hidden;
+  /* margin-bottom: 20px; */
   flex-wrap: wrap;
 }
 .expanded {
