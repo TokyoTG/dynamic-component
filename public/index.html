@@ -1,18 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+  <script>
+    $(function () {
+
+      $(".body-item").draggable({
+
+        // ドラッグ開始時
+        start: function (event, ui) {
+
+          var target = document.getElementById(this.id);
+          target.style.zIndex = 100;
+
+        },
+
+        // ドラッグ終了時
+        stop: function (event, ui) {
+          // console.log(event , ui);
+          let items = [...document.getElementsByClassName('body-item')]
+          var nowPosition = new Object();
+          var newPosition = new Array();
+
+          // 現在のポジションを取得する
+          for (var i = 0; i < items.length; i++) {
+            var positionData = getPosition(items[i]);
+            nowPosition = {
+              'name': 'item' + i,
+              'position': positionData
+            };
+            newPosition.push(nowPosition);
+            items[i].classList.add(nowPosition.name);
+          } // ソート
+          console.log(newPosition);
+          newPosition.sort(function (a, b) {
+            if (a['position'] > b['position']) return -1;
+            if (a['position'] < b['position']) return 1;
+            return 0;
+          }); // Orderを入れる 
+          var number = 0;
+
+          for (var
+              i = newPosition.length; i--;) {
+            var
+              tmpItem = document.getElementsByClassName(newPosition[i].name)[0];
+            tmpItem.style.order = number;
+            tmpItem.style.left = 0;
+            tmpItem.style.top = 0;
+            number++;
+          } // 最後にz-indexを元に戻す 
+          var target = document.getElementById(this.id);
+          target.style.zIndex = 0;
+        }
+      }); // position取得の関数 
+      function getPosition(item) {
+        var
+          tmpItem = item; // 
+        console.dir(tmpItem.offsetLeft);
+        return tmpItem.offsetLeft;
+      }
+    });
+  </script>
+</body>
+
 </html>
