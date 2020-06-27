@@ -44,12 +44,13 @@ export default {
   justify-content: space-evenly;
   padding: 5px 0;
   max-height: 90vh;
+  min-height: 90vh;
   overflow: hidden;
   /* margin-bottom: 20px; */
   flex-wrap: wrap;
 }
 .expanded {
-  order: -1;
+  order: -1 !important;
   margin: auto;
 }
 
@@ -57,5 +58,10 @@ export default {
 .side2,
 .main {
   padding: 10px 15px;
+}
+@media only screen and (max-width: 650px) {
+  #main-body {
+    overflow: auto;
+  }
 }
 </style>
